@@ -40,19 +40,19 @@ router.post('/',(req, res) => {
         })
 })
 
-//Update a student
-// router.patch('/:id',(req, res) => {
-//     Student.findById(req.params.id)
-//         .then(student => {
-//             student.first_name = req.body.first_name,
-//             student.last_name = req.body.last_name,
-//             student.age = req.body.age
+// Update a student
+router.patch('/:id',(req, res) => {
+    Student.findById(req.params.id)
+        .then(student => {
+            student.first_name = req.body.first_name,
+            student.last_name = req.body.last_name,
+            student.age = req.body.age
 
-//             student.save()
-//                 .then(data => {res.json(data)})
-//                 .catch(err => {res.json({ message : err })})
-//         }) 
-//         .catch(err => {res.json({ message : err })})   
-// })
+            student.save()
+                .then(data => {res.json(data)})
+                .catch(err => {res.json({ message : err })})
+        }) 
+        .catch(err => {res.json({ message : err })})   
+})
 
 module.exports = router;
