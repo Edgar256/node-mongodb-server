@@ -1,16 +1,12 @@
 const mongoose = require('mongoose');
 
-const StudentSchema = mongoose.Schema({
+const AdminSchema = mongoose.Schema({
     first_name : {
         type : String,
         required : true
     },
     last_name : {
         type : String,
-        required : true
-    },
-    age : {
-        type : Number,
         required : true
     },
     role:{
@@ -23,4 +19,4 @@ const StudentSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('students', StudentSchema);
+module.exports = mongoose.model('admins', AdminSchema);

@@ -1,39 +1,38 @@
 const express = require('express');
 const router = express.Router(); 
-const Student = require('../models/Student.model');
+const Admin = require('../models/Admin.model');
 const { roles } = require('../roles')
 
-// Get All Students
+// Get All admins
 router.get('/' , (req, res) => {
-    Student.find()
-        .then(students => res.json(students))
+    Admin.find()
+        .then(admins => res.json(admins))
         .catch(err => res.status(400).json(`Error : ${err}`))
-    console.log(`students retrieved successfully`);
+    console.log(`admins retrieved successfully`);
 });
 
-//Find one student
+//Find one admin
 router.get('/:id' , (req, res) => {
-    Student.findById(req.params.id)
-        .then(student => res.json(student))
+    Admin.findById(req.params.id)
+        .then(admin => res.json(admin))
         .catch(err => res.status(400).json(`Error : ${err}`))
 });
 
-//Delete one student
+//Delete one admin
 router.delete('/:id' , (req, res) => {
-    Student.findByIdAndDelete(req.params.id)
-        .then(students => res.json(`Student entry has been deleted`))
+    Admin.findByIdAndDelete(req.params.id)
+        .then(admin => res.json(`Admin entry has been deleted`))
         .catch(err => res.status(400).json(`Error : ${err}`))
 });
 
 //Add a student
 router.post('/',(req, res) => {
-    const student = new Student({
+    const admin = new Admin({
         first_name : req.body.first_name,
         last_name : req.body.last_name,
-        age : req.body.age,
-        role : roles.student
+        role : roles.admin
     });
-    student.save()
+    admin.save()
         .then(data => {
             res.json(data);
         })
@@ -42,15 +41,15 @@ router.post('/',(req, res) => {
         })
 })
 
-// Update a student
+// Update a admin
 router.patch('/:id',(req, res) => {
-    Student.findById(req.params.id)
-        .then(student => {
-            student.first_name = req.body.first_name,
-            student.last_name = req.body.last_name,
-            student.age = req.body.age
+    Admin.findById(req.params.id)
+        .then(admin => {
+            admin.first_name = req.body.first_name,
+            admin.last_name = req.body.last_name,
+            admin.age = req.body.age
 
-            student.save()
+            admin.save()
                 .then(data => {res.json(data)})
                 .catch(err => {res.json({ message : err })})
         }) 

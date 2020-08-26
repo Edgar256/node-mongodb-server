@@ -7,11 +7,17 @@ require('dotenv/config');
 
 // Route imports
 const studentsRoute = require('./routes/students');
+const teachersRoute = require('./routes/teachers');
+const adminRoute = require('./routes/admin');
 
 // Middleware
 app.use(bodyParser.json());
 app.use(cors());
+
+// protected routes ie Students Dashboard, Teachers Dashboaord, Admin Dashboard
 app.use('/students', studentsRoute);
+app.use('/teachers', teachersRoute);
+app.use('/admin', adminRoute);
 
 // Routes
 app.get('/' , (req,res) => {
